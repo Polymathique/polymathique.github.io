@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Polymathique — Human insight and critical thinking combined with AI/ML tools to tackle new challenges in Finance, Sport Betting and Water Desalination." />
+  <title>Polymathique — Human + Machine</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark:    #0a0d14;
+      --bg-card:    #111827;
+      --accent:     #38bdf8;
+      --accent2:    #818cf8;
+      --text-main:  #e2e8f0;
+      --text-muted: #94a3b8;
+      --border:     rgba(255,255,255,0.07);
+      --radius:     12px;
+      --transition: 0.3s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10, 13, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* animated gradient mesh background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 50%, rgba(56,189,248,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 80% 30%, rgba(129,140,248,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 60% 80%, rgba(56,189,248,0.07) 0%, transparent 50%);
+      animation: meshPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes meshPulse {
+      from { opacity: 0.7; }
+      to   { opacity: 1; }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(56,189,248,0.12);
+      border: 1px solid rgba(56,189,248,0.3);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 820px;
+      position: relative;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 620px;
+      position: relative;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      position: relative;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0a0d14;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56,189,248,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── Section shared ── */
+    section { padding: 5rem 2rem; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 580px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto;
+      max-width: 1100px;
+    }
+
+    /* ── About ── */
+    #about { background: var(--bg-dark); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-text p { color: var(--text-muted); margin-bottom: 1rem; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .stat-box .num {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-box .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .human-machine {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hm-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .hm-card:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .hm-icon {
+      font-size: 1.75rem;
+      flex-shrink: 0;
+      width: 2.5rem;
+      text-align: center;
+    }
+
+    .hm-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .hm-card p  { font-size: 0.88rem; color: var(--text-muted); }
+
+    /* ── Focus areas ── */
+    #focus { background: var(--bg-card); }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .focus-card {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .focus-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .focus-card:hover {
+      border-color: rgba(56,189,248,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(56,189,248,0.1);
+    }
+    .focus-card:hover::before { opacity: 1; }
+
+    .focus-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+
+    .focus-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .focus-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .tag {
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.2);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    /* ── Approach ── */
+    #approach { background: var(--bg-dark); }
+
+    .approach-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 3rem;
+      max-width: 720px;
+    }
+
+    .approach-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .approach-num {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #0a0d14;
+      margin-top: 0.1rem;
+    }
+
+    .approach-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .approach-body p  { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ── Contact ── */
+    #contact {
+      background: var(--bg-card);
+      text-align: center;
+    }
+
+    #contact .section-sub {
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    .contact-box {
+      display: inline-block;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 3rem;
+      margin-top: 1rem;
+    }
+
+    .contact-email {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .contact-email:hover { color: var(--accent2); }
+
+    .contact-hint {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stat-row { grid-template-columns: repeat(3, 1fr); }
+      .contact-box { padding: 1.5rem 1.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .focus-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <a class="nav-logo" href="#"><span>Poly</span>mathique</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#focus">Focus Areas</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <span class="hero-tag">Human + Machine</span>
+    <h1>Where Human Insight Meets<br /><span class="highlight">Machine Intelligence</span></h1>
+    <p class="hero-sub">
+      Critical thinking and domain expertise, supercharged by AI&nbsp;&amp;&nbsp;ML — applied to the world's most complex and rewarding challenges.
+    </p>
+    <div class="hero-cta">
+      <a href="#focus" class="btn btn-primary">Explore Our Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <div class="container">
+      <span class="section-label">Who We Are</span>
+      <h2 class="section-title">Polymathique</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Polymathique is built on a simple but powerful belief: the best outcomes emerge when human curiosity and judgment are amplified — not replaced — by artificial intelligence.
+          </p>
+          <p>
+            We combine rigorous critical thinking, cross-disciplinary research, and cutting-edge AI&nbsp;&amp;&nbsp;ML tools to surface insights that neither humans nor machines could reach alone.
+          </p>
+          <p>
+            Our work spans high-stakes domains where analytical edge translates directly into real-world impact.
+          </p>
+
+          <div class="stat-row">
+            <div class="stat-box">
+              <div class="num">3</div>
+              <div class="label">Focus Domains</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">∞</div>
+              <div class="label">Curiosity</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">1</div>
+              <div class="label">Mission</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="human-machine">
+          <div class="hm-card">
+            <div class="hm-icon">🧠</div>
+            <div>
+              <h3>Human Insight</h3>
+              <p>Pattern recognition, intuition, ethical reasoning, and the ability to ask the right questions in ambiguous situations.</p>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-icon">⚡</div>
+            <div>
+              <h3>Machine Power</h3>
+              <p>Scalable computation, statistical modelling, real-time data processing, and the ability to find signals in massive datasets.</p>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-icon">🤝</div>
+            <div>
+              <h3>Collaborative Edge</h3>
+              <p>The synthesis of both — faster discovery, better decisions, and solutions that are robust in the real world.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Focus Areas ── -->
+  <section id="focus">
+    <div class="container">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Focus Areas</h2>
+      <p class="section-sub">Three domains where data-driven thinking and human judgment create transformative advantage.</p>
+
+      <div class="focus-grid">
+
+        <!-- Finance -->
+        <div class="focus-card">
+          <span class="focus-emoji">📈</span>
+          <h3>Finance</h3>
+          <p>
+            Quantitative strategies, risk modelling, and portfolio intelligence. We apply statistical learning and human domain expertise to identify market dynamics that traditional models miss.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Quantitative Analysis</span>
+            <span class="tag">Risk Modelling</span>
+            <span class="tag">ML Forecasting</span>
+            <span class="tag">Portfolio Intelligence</span>
+          </div>
+        </div>
+
+        <!-- Sport Betting -->
+        <div class="focus-card">
+          <span class="focus-emoji">🏆</span>
+          <h3>Sport Betting</h3>
+          <p>
+            Probabilistic edge in sports markets through advanced statistical models, real-time data ingestion, and systematic bias correction in public odds.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Odds Analysis</span>
+            <span class="tag">Predictive Models</span>
+            <span class="tag">Value Identification</span>
+            <span class="tag">Bankroll Optimisation</span>
+          </div>
+        </div>
+
+        <!-- Water Desalination -->
+        <div class="focus-card">
+          <span class="focus-emoji">💧</span>
+          <h3>Water Desalination</h3>
+          <p>
+            Tackling global water scarcity with intelligent process optimisation. AI-driven monitoring and control systems that improve energy efficiency and output quality at scale.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Process Optimisation</span>
+            <span class="tag">Energy Efficiency</span>
+            <span class="tag">IoT &amp; Sensors</span>
+            <span class="tag">Predictive Maintenance</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Approach ── -->
+  <section id="approach">
+    <div class="container">
+      <span class="section-label">How We Work</span>
+      <h2 class="section-title">Our Approach</h2>
+      <p class="section-sub">A disciplined, iterative process that keeps humans in the loop at every step.</p>
+
+      <div class="approach-list">
+        <div class="approach-item">
+          <div class="approach-num">1</div>
+          <div class="approach-body">
+            <h3>Define the Problem</h3>
+            <p>We start with rigorous problem framing — identifying assumptions, constraints, and the shape of a good solution before touching any data.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">2</div>
+          <div class="approach-body">
+            <h3>Gather &amp; Engineer Data</h3>
+            <p>Sourcing high-quality, relevant data and transforming it into features that encode domain knowledge alongside raw statistics.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">3</div>
+          <div class="approach-body">
+            <h3>Model &amp; Experiment</h3>
+            <p>Rapid iteration through hypothesis testing, model selection, and validation — always measuring against meaningful real-world benchmarks.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">4</div>
+          <div class="approach-body">
+            <h3>Interpret &amp; Act</h3>
+            <p>Human experts review model outputs, sanity-check conclusions, and make final decisions — ensuring accountability and adaptability.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">5</div>
+          <div class="approach-body">
+            <h3>Learn &amp; Improve</h3>
+            <p>Continuous feedback loops so that every outcome — good or bad — feeds back into better models and sharper human intuition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="container">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Let's Work Together</h2>
+      <p class="section-sub">
+        Have a challenge that requires both human insight and machine intelligence? We'd love to hear from you.
+      </p>
+      <div class="contact-box">
+        <a class="contact-email" href="mailto:info@polymathique.com">info@polymathique.com</a>
+        <p class="contact-hint">We respond to every message personally.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>© 2026 <a href="#">Polymathique</a>. Built with curiosity.</p>
+  </footer>
+
+</body>
+</html>
