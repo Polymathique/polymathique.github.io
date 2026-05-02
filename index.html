@@ -41,7 +41,8 @@
       z-index: 100;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start; /* left align items */
+      gap: 1.25rem;
       padding: 1rem 2.5rem;
       background: rgba(10, 13, 20, 0.85);
       backdrop-filter: blur(12px);
@@ -57,7 +58,15 @@
     }
     .nav-logo span { color: var(--accent); }
 
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-slogan {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-left: 0.5rem;
+      align-self: center;
+      white-space: nowrap;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; margin-left: auto; }
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
@@ -503,7 +512,8 @@
 
   <!-- ── Nav ── -->
   <nav>
-    <a class="nav-logo" href="#"><span>Poly</span>mathique</a>
+    <a class="nav-logo" href="#"><span>Poly</span>Mathique</a>
+    <span class="nav-slogan">Not AI native, but AI reborn. Allelujah!</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#focus">Focus Areas</a></li>
@@ -514,23 +524,28 @@
 
   <!-- ── Hero ── -->
   <section class="hero">
-    <span class="hero-tag">Human + Machine</span>
+
+<p class="hero-sub">
+
+<span class="hero-tag" style="font-size: 2em;">Human + Machine</span>
+
 <p class="hero-sub">
   Critical Thinking and Domain Expertise leveraging AI and ML capabilities applied to the most complex and rewarding challenges.
 </p>
+
 <div class="hero-manifesto">
   <div class="mantra human">
-    <span class="mantra-label">🧑 Human</span>
-    Human expertise frames the problem, challenges assumptions, and validates outcomes in real-world context.
+    <span class="mantra-label"> Human</span>
+    Human Intuition and Critical Thinking to ask the right questions and recognise the right answers.
   </div>
-  <div class="mantra machine">
-    <span class="mantra-label">🤖 Machine</span>
-    Machine intelligence scales computation, tests hypotheses, quantifies uncertainty, and surfaces patterns in data.
+  <div class="mantra human">
+    <span class="mantra-label"> Machine</span>
+    Machine intelligence to process data and organize information. Presenting evidence so that we can make decisions.
   </div>
 </div>
 
     <div class="hero-cta">
-      <a href="#focus" class="btn btn-primary">Explore Our Work</a>
+      <a href="#focus" class="btn btn-outline">Explore Our Work</a>
       <a href="#contact" class="btn btn-outline">Get in Touch</a>
     </div>
   </section>
